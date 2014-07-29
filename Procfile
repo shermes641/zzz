@@ -1,0 +1,1 @@
+web: java $JAVA_OPTS -Ddw.server.connector.port=$PORT -jar target/meterservice-0.7.1-SNAPSHOT.jar db migrate meterservice-config-heroku.yml && java $JAVA_OPTS -Ddw.server.connector.port=$PORT -jar target/meterservice-0.7.1-SNAPSHOT.jar server meterservice-config-heroku.yml

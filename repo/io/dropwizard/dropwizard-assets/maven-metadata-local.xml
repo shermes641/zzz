@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<groupId>io.dropwizard</groupId>
+	<artifactId>dropwizard-assets</artifactId>
+	<versioning>
+		<versions>
+			<version>0.7.1-SNAPSHOT</version>
+		</versions>
+		<lastUpdated>20140508022002</lastUpdated>
+	</versioning>
+</metadata>

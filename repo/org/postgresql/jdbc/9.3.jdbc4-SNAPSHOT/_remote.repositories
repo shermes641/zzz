@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed May 07 13:32:56 CST 2014
+jdbc-9.3.jdbc4-SNAPSHOT.jar>=
+jdbc-9.3.jdbc4-20130308.172208-1.jar>sonatype-nexus-snapshots=
+jdbc-9.3.jdbc4-20130308.172208-1.pom>sonatype-nexus-snapshots=

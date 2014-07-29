@@ -1,0 +1,79 @@
+template: Hello, %s!
+
+defaultName: Stranger
+
+redis:
+  hostname: localhost
+  port: 6379
+  
+# Database settings.
+database:
+  driverClass: org.postgresql.Driver
+  user: postgres
+  password: Flash.451
+  url: jdbc:postgresql://localhost:12345/phserviceDB
+
+#in memory DB:
+  #driverClass: org.h2.Driver
+  #user: sa
+  #password: sa
+  #url: jdbc:h2:mem
+  
+  validationQuery: "/* Service Health Check */ SELECT 1"
+  
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 1s
+
+  # the minimum number of connections to keep open
+  minSize: 10
+  initialSize: 20
+
+  # the maximum number of connections to keep open
+  maxSize: 1000
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+
+server:
+#  softNofileLimit: 1000
+#  hardNofileLimit: 1000
+  applicationConnectors:
+    - type: http
+      port: 8280
+    - type: https
+      port: 8449
+      keyStorePath: meterservice.keystore
+      keyStorePassword: drone123
+      validateCerts: false
+# this requires the npn-boot library on the JVM's boot classpath
+#    - type: spdy3
+#      port: 8445
+#      keyStorePath: meterservice.keystore
+#      keyStorePassword: example
+#      validateCerts: false
+  adminConnectors:
+    - type: http
+      port: 8281
+    - type: https
+      port: 8447
+      keyStorePath: meterservice.keystore
+      keyStorePassword: drone123
+      validateCerts: false
+
+# Logging settings.
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+  # Logger-specific levels.
+  loggers:
+
+    # Sets the level for 'com.example.app' to DEBUG.
+    com.example.app: OFF
+
+    org.hibernate.SQL: OFF
+
+  appenders:
+    - type: console

@@ -1,0 +1,72 @@
+template: Hello, %s!
+
+defaultName: Stranger
+
+redis:
+  hostname: HEROKU
+  port: 666
+  
+# Database settings.
+database:
+  driverClass: org.postgresql.Driver
+  
+  #BLACK HOBBY postgres://sviajtpqxzjelt:bwJzLakhq3lKf8j7MnII89o8qu@ec2-184-73-251-115.compute-1.amazonaws.com:5432/dftuflumimnpvr
+  #user: sviajtpqxzjelt
+  #password: bwJzLakhq3lKf8j7MnII89o8qu
+  #url: jdbc:postgresql://ec2-184-73-251-115.compute-1.amazonaws.com:5432/dftuflumimnpvr?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+
+  #GOLD BASIC postgres://nbtydqcsoccjjb:7o7kE5LLRikE-VuuW9H0yPrnAi@ec2-54-197-241-64.compute-1.amazonaws.com:5432/d9f8t4cg8oge36
+  #user: nbtydqcsoccjjb
+  #password: 7o7kE5LLRikE-VuuW9H0yPrnAi
+  #url: jdbc:postgresql://ec2-54-197-241-64.compute-1.amazonaws.com:5432/d9f8t4cg8oge36?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+
+  #VIOLET postgres://u789r99a002q5v:pb5om8a3qdvot2e3vik006d15hr@ec2-54-83-205-95.compute-1.amazonaws.com:5542/d2kpi3l7p9r3mo
+  user: u789r99a002q5v
+  password: pb5om8a3qdvot2e3vik006d15hr
+  url: jdbc:postgresql://ec2-54-83-205-95.compute-1.amazonaws.com:5542/d2kpi3l7p9r3mo?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+  
+  #in memory DB:
+  #driverClass: org.h2.Driver
+  #user: sa
+  #password: sa
+  #url: jdbc:h2:mem
+  
+  validationQuery: "/* Service Health Check */ SELECT 1"
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 2s
+
+  # the minimum number of connections to keep open
+  minSize: 10
+
+  # the maximum number of connections to keep open 10 seems to be the minimum
+  maxSize: 60
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+server:
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: $PORT
+
+
+# Logging settings.
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+  # Logger-specific levels.
+  loggers:
+
+    # Sets the level for 'com.example.app' to DEBUG.
+    com.example.app: DEBUG
+
+    org.hibernate.SQL: WARN
+
+  appenders:
+    - type: console

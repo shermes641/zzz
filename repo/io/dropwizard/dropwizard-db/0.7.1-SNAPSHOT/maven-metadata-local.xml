@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+	<groupId>io.dropwizard</groupId>
+	<artifactId>dropwizard-db</artifactId>
+	<version>0.7.1-SNAPSHOT</version>
+	<versioning>
+		<snapshot>
+			<localCopy>true</localCopy>
+		</snapshot>
+		<lastUpdated>20140508021907</lastUpdated>
+		<snapshotVersions>
+			<snapshotVersion>
+				<classifier>javadoc</classifier>
+				<extension>jar</extension>
+				<value>0.7.1-SNAPSHOT</value>
+				<updated>20140508021907</updated>
+			</snapshotVersion>
+			<snapshotVersion>
+				<classifier>sources</classifier>
+				<extension>jar</extension>
+				<value>0.7.1-SNAPSHOT</value>
+				<updated>20140508021907</updated>
+			</snapshotVersion>
+			<snapshotVersion>
+				<extension>jar</extension>
+				<value>0.7.1-SNAPSHOT</value>
+				<updated>20140508021907</updated>
+			</snapshotVersion>
+			<snapshotVersion>
+				<extension>pom</extension>
+				<value>0.7.1-SNAPSHOT</value>
+				<updated>20140508021907</updated>
+			</snapshotVersion>
+		</snapshotVersions>
+	</versioning>
+</metadata>

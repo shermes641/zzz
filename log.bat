@@ -1,0 +1,1 @@
+heroku logs -t --app meter-service --acc work

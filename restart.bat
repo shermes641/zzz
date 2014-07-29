@@ -1,0 +1,1 @@
+heroku restart --app meter-service --acc work

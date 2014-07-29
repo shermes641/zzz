@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+	<changeSet id="1" author="steve hermes">
+		<createTable tableName="webui_usage">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="circuit_id" type="BigInt">
+				<constraints nullable="false" />
+			</column>
+			<column name="queen_id" type="BigInt">
+				<constraints nullable="false" />
+			</column>
+			<column name="day_wh_lifetime" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="night_wh_lifetime" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="day_wh_today" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="night_wh_today" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="total_wh_today" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="credit_balance" type="decimal(26,6)">
+				<constraints nullable="false" />
+			</column>
+			<column name="data_date_time" type="timestamp without time zone">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="webui_circuit">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="number" type="BigInt">
+				<constraints nullable="false" />
+			</column>
+			<column name="queen_id" type="BigInt">
+				<constraints nullable="false" />
+			</column>
+			<column name="serial_number" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="webui_queen">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="number" type="BigInt">
+				<constraints nullable="false" />
+			</column>
+			<column name="grid_id" type="BigInt">
+				<constraints nullable="false" />
+			</column>
+			<column name="serial_number" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="meter_data">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="datats" type="timestamp without time zone">
+				<constraints nullable="false" />
+			</column>
+			<column name="queensysname" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="cid" type="integer">
+				<constraints nullable="false" />
+			</column>
+			<column name="maxwatts" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="ttlwh" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="nwh" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="status" type="integer">
+				<constraints nullable="true" />
+			</column>
+			<column name="type" type="varchar(255)">
+				<constraints nullable="true" />
+			</column>
+			<column name="ttlcr" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="ttldwh" type="double precision">
+				<constraints nullable="false" />
+			</column>
+			<column name="ttlnwh" type="double precision">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<addForeignKeyConstraint baseColumnNames="queen_id"
+			baseTableName="webui_usage" constraintName="fk_usage_queen"
+			deferrable="true" initiallyDeferred="true" onDelete="CASCADE"
+			onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="webui_queen" />
+		<addForeignKeyConstraint baseColumnNames="circuit_id"
+			baseTableName="webui_usage" constraintName="fk_usage_circuit"
+			deferrable="true" initiallyDeferred="true" onDelete="CASCADE"
+			onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="webui_circuit" />
+		<addForeignKeyConstraint baseColumnNames="queen_id"
+			baseTableName="webui_circuit" constraintName="fk_circuit_queen"
+			deferrable="true" initiallyDeferred="true" onDelete="CASCADE"
+			onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="webui_queen" />
+
+		<modifySql>
+			<replace replace="TIMESTAMP WITH TIME ZONE" with="TIMESTAMP WITHOUT TIME ZONE" />
+		</modifySql>
+	</changeSet>
+
+	<changeSet id="4" author="steve hermes">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="meter_data" />
+		</preConditions>
+		<dropTable tableName="meter_data" />
+
+		<createTable tableName="meter_data">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="json" type="varchar(10000)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<modifySql>
+			<replace replace="TIMESTAMP WITH TIME ZONE" with="TIMESTAMP WITHOUT TIME ZONE" />
+		</modifySql>
+	</changeSet>
+
+
+	<changeSet id="5" author="steve hermes">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="meter_data" />
+		</preConditions>
+		<dropTable tableName="meter_data" />
+
+		<createTable tableName="meter_data">
+			<column name="json" type="text">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<modifySql>
+			<replace replace="TIMESTAMP WITH TIME ZONE" with="TIMESTAMP WITHOUT TIME ZONE" />
+		</modifySql>
+	</changeSet>
+
+	<changeSet id="6" author="steve hermes">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="meter_data" />
+		</preConditions>
+		<dropTable tableName="meter_data" />
+
+		<createTable tableName="meter_data">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="json" type="varchar(7000)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+		<modifySql>
+			<replace replace="TIMESTAMP WITH TIME ZONE" with="TIMESTAMP WITHOUT TIME ZONE" />
+		</modifySql>
+	</changeSet>
+
+	<include file="sql/queen.sql" />
+	<include file="sql/circuit.sql" />
+</databaseChangeLog>
